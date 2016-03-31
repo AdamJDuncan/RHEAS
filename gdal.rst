@@ -7,7 +7,7 @@ A graph by decade can be done manually in ArcGIS. By year can be done with a bat
 builder or ArcPy (but it will take a lot of time). By week will simply take too long. The immensity of data produced by RHEAS
 requires GDAL.
 
-Step 0: AddRasterConstraints
+Common SQL commands
 ----------------------------
 
 GDAL looks to your 'public.raster_columns' view for constraints. Without adding constraints to your table, nothing will work. 
@@ -19,7 +19,14 @@ To add constraints to the table 'zambiadrought.spi3201603' type:
 SELECT AddRasterConstraints('zambia'::name, 'spi3201603'::name, 'rast'::name);
 ```
 
-Common commands
+To combine multiple rasters from a single table to one new raster with multibands:
+
+```
+CREATE TABLE spi3multiband AS (SELECT ST_AddBand(NULL, array_agg(rast), 1) As rast 
+FROM zambiadrought.sri3);
+```
+
+Common GDAL commands
 ---------------
 
 To view more information on 'zambiadrought.spi3201603', type:
