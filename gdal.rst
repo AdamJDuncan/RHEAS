@@ -15,29 +15,29 @@ Constraints are added in psql.
 
 To add constraints to the table 'zambiadrought.spi3201603' type:
 
-``
+```
 SELECT AddRasterConstraints('zambia'::name, 'spi3201603'::name, 'rast'::name);
-``
+```
 
 To combine multiple rasters from a single table to one new raster with multibands:
 
-``
+```
 CREATE TABLE spi3multiband AS (SELECT ST_AddBand(NULL, array_agg(rast), 1) As rast 
 FROM zambiadrought.sri3);
-``
+```
 
 Common GDAL commands
 ---------------
 
 To view more information on 'zambiadrought.spi3201603', type:
 
-``
+```
 gdalinfo  "PG:host=localhost port=5432 dbname='rheas' schema='zambiadrought' table=spi3201603"
-``
+```
 
 To export the table to a Geotiff, type:
 
-``
+```
 gdal_translate -of Gtiff "PG:host=localhost port=5432 dbname='rheas' schema='zambiadrought' table='spi3201603'" {PATH}/spi3201603.tif
-``
+```
 .
