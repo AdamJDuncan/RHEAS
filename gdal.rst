@@ -19,6 +19,12 @@ To add constraints to the table 'zambiadrought.spi3201603' type:
 SELECT AddRasterConstraints('zambia'::name, 'spi3201603'::name, 'rast'::name);
 ```
 
+To create a new table for a certain date & layer of soil, type:
+
+```
+CREATE TABLE sm20150101 AS (SELECT rid, rast from zambiadrought.soil_moist WHERE fdate = date'2015-1-1' AND layer = 1)
+```
+
 To combine multiple rasters from a single table to one new raster with multibands:
 
 ```
