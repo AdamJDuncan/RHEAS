@@ -46,7 +46,7 @@ To export the table to a Geotiff, type:
 ```
 gdal_translate -of Gtiff "PG:host=localhost port=5432 dbname='rheas' schema='zambiadrought' table='spi3201603'" {PATH}/spi3201603.tif
 ```
-.
+
 To clip the Geotiff to a shapefile:
 
 ```
