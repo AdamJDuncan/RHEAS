@@ -1,0 +1,35 @@
+Working on output data with GDAL
+================================
+Let's say you want to create a graph of areal percentage of a country under drought since 1981, similar to that found .. _here: http://i.imgur.com/Uy8uxQS.png .
+(Wardlow, B., et al, 2012).
+
+A graph by decade can be done manually in ArcGIS. By year can be done with a batch, perhaps. By month can be done with model 
+builder or ArcPy (but it will take a lot of time). By week will simply take too long. The immensity of data produced by RHEAS
+requires GDAL.
+
+Step 0: AddRasterConstraints
+----------------------------
+
+GDAL looks to your 'public.raster_columns' view for constraints. Without adding constraints to your table, nothing will work. 
+Unlike the rest of these commands -- which are done in bash -- constraints are added in psql.
+
+To add constraints to the table 'zambiadrought.spi3201603' type:
+
+```
+SELECT AddRasterConstraints('zambia'::name, 'spi3201603'::name, 'rast'::name);
+```
+
+Common commands
+---------------
+
+To view more information on 'zambiadrought.spi3201603', type:
+
+```
+gdalinfo  "PG:host=localhost port=5432 dbname='rheas' schema='zambiadrought' table=spi3201603"
+```
+
+To export the table to a Geotiff, type:
+
+```
+gdal_translate -of Gtiff "PG:host=localhost port=5432 dbname='rheas' schema='zambiadrought' table='spi3201603'" {PATH}/spi3201603.tif
+```
