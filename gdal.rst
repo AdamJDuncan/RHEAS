@@ -1,5 +1,5 @@
-Working on output data with GDAL
-================================
+Working on output data with GDAL & SQL
+=====================================
 Let's say you want to create a graph of areal percentage of a country under drought since 1981, similar to that found .. _here: http://i.imgur.com/Uy8uxQS.png .
 (Wardlow, B., et al, 2012).
 
@@ -11,7 +11,7 @@ Step 0: AddRasterConstraints
 ----------------------------
 
 GDAL looks to your 'public.raster_columns' view for constraints. Without adding constraints to your table, nothing will work. 
-Unlike the rest of these commands -- which are done in bash -- constraints are added in psql.
+Constraints are added in psql.
 
 To add constraints to the table 'zambiadrought.spi3201603' type:
 
