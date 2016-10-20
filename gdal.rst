@@ -59,3 +59,13 @@ happynewmonthjan.tif has 31 bands for each day. This calculates the mean of the 
 ```
 gdal_calc.py -A happynewmonthjan.tif --A_band=0 -B happynewmonthjan.tif --B_band=1 -C happynewmonthjan.tif --C_band=2   --outfile=result.tif --calc="(A+B+C)/3"
 ```
+
+
+Currently works to connect to SSH:
+
+```
+gdalinfo "PG:host=10.4.0.35 port=5432 user=ubuntu14 dbname='rheas' schema='bigchirp2005s' table=happynewmonthjan" 
+
+gdal_translate -of Gtiff "PG:host=10.4.0.35 port=5432 user=ubuntu14 dbname='rheas' schema='bigchirp2005s' table=happynewmonthjan" /happynewmonthjan.tif
+
+```
