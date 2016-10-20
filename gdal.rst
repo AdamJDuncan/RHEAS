@@ -52,3 +52,10 @@ To clip the Geotiff to a shapefile:
 ```
 gdalwarp -dstnodata -9999 -cutline LusakaProvince.shp spi3201603.tif spi3201603_Lusaka.tif
 ```
+
+Example of mean:
+happynewmonthjan.tif has 31 bands for each day. This calculates the mean of the first three days:
+
+```
+gdal_calc.py -A happynewmonthjan.tif --A_band=0 -B happynewmonthjan.tif --B_band=1 -C happynewmonthjan.tif --C_band=2   --outfile=result.tif --calc="(A+B+C)/3"
+```
