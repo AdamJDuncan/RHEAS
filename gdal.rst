@@ -65,7 +65,8 @@ Currently works to connect to SSH:
 
 ```
 gdalinfo "PG:host=10.4.0.35 port=5432 user=ubuntu14 dbname='rheas' schema='bigchirp2005s' table=happynewmonthjan" 
+```
 
+```
 gdal_translate -of Gtiff "PG:host=10.4.0.35 port=5432 user=ubuntu14 dbname='rheas' schema='bigchirp2005s' table=happynewmonthjan" /happynewmonthjan.tif
-
 ```
